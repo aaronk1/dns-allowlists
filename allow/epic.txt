@@ -1,0 +1,66 @@
+! Epic Games allowlist for AdGuard Home. Sections cite the source each host came from.
+! Hosts are taken from the sources listed below. Paths are dropped because DNS filtering can't match them.
+! AdGuard's ||host^ also matches subdomains of host.
+
+! === Source 1: https://www.epicgames.com/help/technical-support-c-36624475/general-support-c-35761596/which-domains-need-to-be-whitelisted-to-reach-the-epic-servers-a15422130
+! --- launcher & accounts ---
+@@||account-public-service-prod03.ol.epicgames.com^
+@@||launcherwaitingroom-public-service-prod06.ol.epicgames.com^
+@@||launcher-public-service-prod06.ol.epicgames.com^
+@@||launcher-website-prod07.ol.epicgames.com^
+@@||accounts.launcher-website-prod07.ol.epicgames.com^
+@@||accounts.epicgames.com^
+@@||accountportal-website-prod07.ol.epicgames.com^
+@@||entitlement-public-service-prod08.ol.epicgames.com^
+@@||friends-public-service-prod06.ol.epicgames.com^
+@@||lightswitch-public-service-prod06.ol.epicgames.com^
+@@||ut-public-service-prod10.ol.epicgames.com^
+
+! --- website & store ---
+@@||www.epicgames.com^
+@@||store.epicgames.com^
+@@||launcher.store.epicgames.com^
+@@||store-site-backend-static.ak.epicgames.com^
+@@||store-content.ak.epicgames.com^
+@@||static-assets-prod.epicgames.com^
+@@||library-service.live.use1a.on.epicgames.com^
+@@||datastorage-public-service-liveegs.live.use1a.on.epicgames.com^
+
+! --- ecommerce ---
+@@||catalog-public-service-prod06.ol.epicgames.com^
+@@||orderprocessor-public-service-ecomprod01.ol.epicgames.com^
+
+! --- downloads & CDN ---
+@@||download.epicgames.com^
+@@||download2.epicgames.com^
+@@||download3.epicgames.com^
+@@||download4.epicgames.com^
+@@||epicgames-download1.akamaized.net^
+@@||fastly-download.epicgames.com^
+@@||cdn1.unrealengine.com^
+@@||cdn2.unrealengine.com^
+
+! --- captcha ---
+@@||js.hcaptcha.com^
+
+! --- telemetry (remove these two lines if you don't want Epic telemetry through) ---
+@@||tracking.epicgames.com^
+@@||datarouter.ol.epicgames.com^
+
+! === Source 2: https://dev.epicgames.com/docs/epic-online-services/eos-get-started/firewall-considerations
+! Also see Source 3, which points to the same host list.
+! --- core EOS ---
+@@||api.epicgames.dev^
+@@||dev.epicgames.com^
+@@||epicgames.com^
+@@||epic-social-game-overlay-prod.ol.epicgames.com^
+
+! --- EOS Voice (media is UDP to dynamic AWS IPs; not allowlistable by name) ---
+@@||live.rtcp.on.epicgames.com^
+
+! --- ecommerce (also covered above where noted) ---
+@@||ecommerceintegration-public-service-ecomprod02.ol.epicgames.com^
+@@||priceengine-public-service-ecomprod01.ol.epicgames.com^
+
+! === Source 3: https://eoshelp.epicgames.com/s/article/When-using-a-strict-firewall-which-domains-should-be-added-to-the-allow-list-for-EOS?language=en_US
+! Adds api.epicgames.dev, the main EOS endpoint (listed in Source 2). Also points to Source 1 and Source 2.
