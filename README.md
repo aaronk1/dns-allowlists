@@ -1,23 +1,35 @@
-# Epic Games DNS allowlists
+# DNS allowlists
 
-Allowlist rules for Epic Games launcher, store, accounts, downloads, EOS SDK, and EOS Voice, for use behind DNS filtering.
+Allowlists for DNS filtering (AdGuard Home, Pi-hole). Each service gets its own file in `allow/`. The build combines them into outputs for each filter.
+
+## Lists
+
+- `allow/epic.txt`: Epic Games launcher, store, accounts, downloads, EOS SDK, EOS Voice, and ecommerce.
 
 ## Sources
+
+`allow/epic.txt` has one section per source. Each entry is cited in its section:
 
 - Epic Games Help, "Which domains need to be whitelisted to reach the Epic servers?": https://www.epicgames.com/help/technical-support-c-36624475/general-support-c-35761596/which-domains-need-to-be-whitelisted-to-reach-the-epic-servers-a15422130
 - EOS Developer Docs, "Firewall Considerations": https://dev.epicgames.com/docs/epic-online-services/eos-get-started/firewall-considerations
 - EOS Support, "When using a strict firewall, which domains should be added to the allow-list for EOS?": https://eoshelp.epicgames.com/s/article/When-using-a-strict-firewall-which-domains-should-be-added-to-the-allow-list-for-EOS?language=en_US
 
-`allow/epic.txt` has a section for each source. Entries are AdGuard syntax (`@@||host^`), which also matches subdomains.
+Entries use AdGuard syntax (`@@||host^`), which also matches subdomains.
+
+## Outputs
+
+- `dist/adguard.txt`: all lists combined, AdGuard syntax. Subscribe to it as one URL in AdGuard Home.
+- `dist/pihole.txt`: all lists combined, Pi-hole regex allowlist, one entry per host and its subdomains.
+
+## Adding a list
+
+1. Add `allow/<service>.txt` in AdGuard syntax, with a header comment citing the source.
+2. Run `scripts/build.sh`.
+3. Commit `allow/` and `dist/` together.
+
+## Refreshing
 
 **Last refreshed:** 2026-10-25, by hand. The Epic Help page returns 403 to automated fetches, so refresh it manually: open each link, compare the hostnames with `allow/epic.txt`, edit, then run `scripts/build.sh`.
-
-## Files
-
-- `allow/epic.txt`: source of truth. Edit this.
-- `dist/adguard-allow.txt`: combined AdGuard rules. Subscribe to it as one URL in AdGuard Home.
-- `dist/pihole-regex.txt`: Pi-hole regex allowlist, one entry per host and its subdomains.
-- `scripts/build.sh`: regenerates `dist/` from `allow/`. Run it before committing.
 
 ## Notes
 
