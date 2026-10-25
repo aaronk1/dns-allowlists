@@ -18,8 +18,12 @@ Entries use AdGuard syntax (`@@||host^`), which also matches subdomains.
 
 ## Outputs
 
-- `dist/adguard.txt`: all lists combined, AdGuard syntax. Subscribe to it as one URL in AdGuard Home.
-- `dist/pihole.txt`: all lists combined, Pi-hole regex allowlist, one entry per host and its subdomains.
+Each list in `allow/` produces one file per format:
+
+- `dist/adguard/<name>.txt`: AdGuard Home syntax. Subscribe to it as a filter in AdGuard Home.
+- `dist/pihole/<name>.txt`: Pi-hole regex allowlist, one entry per host and its subdomains.
+
+For example, `allow/epic.txt` gives `dist/adguard/epic.txt` and `dist/pihole/epic.txt`.
 
 ## Adding a list
 
